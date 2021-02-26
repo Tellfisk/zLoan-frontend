@@ -11,13 +11,13 @@ const navs = [
 
 const Nav = () => (
     <nav className='bg-white p-4'>
-        <ul  className='flex space-x-6 justify-start'>
-            {navs.map(navItem => (
-                <li>
-                <NavLink exact to={navItem.path} activeClassName='border-b-2 
-                border-black'>
-                    {navItem.name}
-                </NavLink>
+        <ul className='flex space-x-6 justify-start'>
+            { navs.map(navItem => (
+                <li key={navItem.name.id}>
+                    <NavLink exact to={navItem.path} activeClassName='border-b-2 
+                    border-black'>
+                        {navItem.name}
+                    </NavLink>
                 </li>
             ))}
         </ul>
