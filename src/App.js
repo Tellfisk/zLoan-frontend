@@ -13,19 +13,20 @@ function App() {
     <Router>
       <Nav />
       <Switch>
+
         <Route exact path='/'>
           <Home />
         </Route>
+
         <Route exact path='/about'>
           <About />
         </Route>
+
       </Switch>
       
       <Footer />
     </Router>
   );
 }
-
-
 
 export default App;
