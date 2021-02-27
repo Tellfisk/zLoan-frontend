@@ -6,7 +6,6 @@ import {
 const navs = [
     {path: '/', name:'Home'},
     {path: '/about', name:'About'},
-    {path: '/contact', name:'Contact'}
 ]
 
 const Nav = () => (

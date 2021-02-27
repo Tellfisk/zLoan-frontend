@@ -4,7 +4,7 @@ import { Layout } from '../layout';
 
 const About = () => (
     <Layout>
-        This is the about page!
+        <h1 className='text-2xl'>This is the about page!</h1>
     </Layout>
 )
 
