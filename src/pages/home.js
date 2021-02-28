@@ -7,7 +7,7 @@ import Chart from 'chart.js';
 
 const url = "https://localhost:44390/loan";
 var loanT = "housing";
-var paybackS = "f";
+var paybackS = "series";
 
 
 const Home = () => (
@@ -32,18 +32,15 @@ const Home = () => (
             <MyButton buttonId='Series' whenPressed={ () => { paybackS = "series"; } }/>
             <br/><br/>
             
-            <br/><br/>
-            <MyButton buttonId='Go' whenPressed={ getInputs }/>
-        </div>
-        <div id='backDiv' style={{display:'none'}}>
-            <MyButton buttonId='Back' whenPressed={ showInputfields }/>
-            <br/><br/>
-            <canvas id="chart" width={window.innerWidth * 0.5} 
-                           height={window.innerHeight * 0.5}></canvas>
+            <MyButton buttonId='Go' whenPressed={ getInputs } solid={true}/>
         </div>
 
-        
-        
+        <div id='backDiv' style={{display:'none'}}>
+            <MyButton buttonId='Back' whenPressed={ showInputfields } solid={true}/>
+            <br/><br/>
+            <canvas class='object-fill' id="chart" 
+            width={window.innerWidth * 0.93} height={window.innerHeight * 0.75}></canvas>
+        </div>
     </Layout>
 );
 
@@ -67,7 +64,6 @@ function showInputfields() {
     document.getElementById("inputElements").style.display = "block";
     document.getElementById("backDiv").style.display = "none";
 }
-
 
 function drawChart(months) {
     var monthlyPay = [];
@@ -102,6 +98,7 @@ function drawChart(months) {
         options: {
             scales: {
                 yAxes: [
+
                     {
                         stacked: true,
                     }
@@ -113,6 +110,7 @@ function drawChart(months) {
                 ]
             },
             legend: { display: true },
+            responsive: false,
             title: {
                 display: true,
                 text: 'Payback Plan'
@@ -123,17 +121,16 @@ function drawChart(months) {
 
 // Sends a POST request to the backend API
 async function postData(data) {
-axios.post(url, data)
-.then(response => {
-    console.log('Response: ', response);
-    document.getElementById("inputElements").style.display = "none";
-    document.getElementById("backDiv").style.display = "block";
-    drawChart(response.data.paybackMonths)
-    return response;
-})
-.catch(error => {
-    console.error('There was an error!', error);
-})
+    axios.post(url, data)
+    .then(response => {
+        console.log('Response: ', response);
+        document.getElementById("inputElements").style.display = "none";
+        document.getElementById("backDiv").style.display = "block";
+        drawChart(response.data.paybackMonths)
+    })
+    .catch(error => {
+        console.error('There was an error!', error);
+    })
 }
 
 export default Home;
