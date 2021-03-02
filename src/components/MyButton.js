@@ -16,7 +16,7 @@ export default class MyButton extends React.Component {
     }
 
     //I do not like this
-    onClick = (event) => {
+    onClick = () => {
         this.props.whenPressed(); 
         this.switchAppearance();
     }
